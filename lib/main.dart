@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/features/auth/views/login_view.dart';
+import 'package:untitled/root.dart';
 import 'package:untitled/splash_screen.dart';
 
 import 'features/auth/views/signup_view.dart';
@@ -16,8 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white
+      ),
       debugShowCheckedModeBanner: false,
-      home: SignUpView(),
+      home: Root(),
     );
   }
 }
