@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import '../../productDetail/views/product_details_view.dart';
 import '../widget/card_item.dart';
 import '../widget/food_catrgory.dart';
 import '../widget/search_field.dart';
@@ -47,12 +48,21 @@ class _HomeViewState extends State<HomeView> {
                     crossAxisSpacing: 10,
                   ),
                   itemBuilder: (context, index) {
-                    return CardItem(
-                      text: "Cheeseburger",
-                      image:
-                      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=60",
-                      desc: "Wendy's Burger",
-                      rate: "4.9",
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ProductDetailsView();
+                            },)
+                        );
+                      },
+                      child: CardItem(
+                        text: "Cheeseburger",
+                        image:
+                        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=60",
+                        desc: "Wendy's Burger",
+                        rate: "4.9",
+                      ),
                     );
                   },
                 ),
