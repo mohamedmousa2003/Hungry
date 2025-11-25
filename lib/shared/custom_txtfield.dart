@@ -1,69 +1,143 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../core/constants/app_colors.dart';
+import 'package:flutter/services.dart';
+import 'package:untitled/core/constants/app_colors.dart';
 
-class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({super.key, required this.hint, required this.isPassword, required this.controller});
-  final String hint;
-  final bool isPassword;
-  final TextEditingController controller;
+class CustomTextField extends StatefulWidget {
+  final TextEditingController? controller;
+  final bool? isPassword;
+  final String? hint;
+  final bool? enabled;
+  final int? maxLines, minLines, maxLength;
+  final String? obscuringCharacter, value;
+  final String? Function(String?)? onValidate;
+  final void Function(String?)? onChanged, onFieldSubmitted, onSaved;
+  final void Function()? onEditingComplete, onTap;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final Widget? suffixWidget, prefixIcon;
+  final IconData? icon;
+  final TextInputAction? action;
+  final FocusNode? focusNode;
+
+  const CustomTextField({
+    super.key,
+    this.controller,
+    this.isPassword,
+    this.hint,
+    this.enabled,
+    this.obscuringCharacter,
+    this.value,
+    this.onValidate,
+    this.onChanged,
+    this.onFieldSubmitted,
+    this.onEditingComplete,
+    this.onSaved,
+    this.onTap,
+    this.maxLines = 1,
+    this.minLines = 1,
+    this.maxLength,
+    this.keyboardType,
+    this.inputFormatters,
+    this.suffixWidget,
+    this.icon,
+    this.prefixIcon,
+    this.action,
+    this.focusNode,
+  });
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  late bool _obscureText;
-
-  @override
-  void initState() {
-    _obscureText = widget.isPassword;
-    super.initState();
-  }
-  void _togglePassword() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
+    var theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        cursorHeight: 50,
-        style: TextStyle(fontSize: 16,color: Colors.white),
         controller: widget.controller,
-        cursorColor: AppColors.primary,
-        validator: (v) {
-          if(v == null || v.isEmpty) {
-            return 'please fill ${widget.hint}';
-          }
-          null;
-        },
-        obscureText: _obscureText,
+        initialValue: widget.value,
+        validator: widget.onValidate,
+        onChanged: widget.onChanged,
+        onEditingComplete: widget.onEditingComplete,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        onSaved: widget.onSaved,
+        onTap: widget.onTap,
+        maxLines: widget.maxLines,
+        minLines: widget.minLines,
+        maxLength: widget.maxLength,
+        obscureText: widget.isPassword ?? false ? obscureText : false,
+        obscuringCharacter: '*',
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
+        enabled: widget.enabled,
+        style: theme.textTheme.bodyLarge!.copyWith(
+          color: Colors.black,
+          fontSize: 20
+        ),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        textInputAction: widget.action ?? TextInputAction.done,
+        focusNode: widget.focusNode,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          suffixIcon: widget.isPassword ? GestureDetector(
-            onTap: _togglePassword,
-            child: Icon(CupertinoIcons.eye ,color: Colors.white,size: 19,),
-          ) : null,
+          fillColor: Colors.white,
+          filled: true,
+          suffixIcon: widget.isPassword ?? false
+              ? InkWell(
+            onTap: () {
+              setState(() {
+                obscureText = !obscureText;
+              });
+            },
+            child: Icon(
+              obscureText ? Icons.visibility : Icons.visibility_off,
+              color: Colors.grey,
+            ),
+          )
+              : widget.suffixWidget,
+          prefixIcon: widget.prefixIcon,
+          hintText: widget.hint,
+          hintStyle: TextStyle(fontSize: 20, color: Colors.grey.shade600),
+          counterText: "",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: AppColors.primary,
+              width: 1,
+            ),
+          ),
+          // suffix: isPass widget.suffixWidget,
+          contentPadding: const EdgeInsets.only(
+            top: 15,
+            left: 10,
+            right: 10,
+            bottom: 15,
+          ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.white,width: 1),
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 1,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey,width: 2),
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: AppColors.primary,
+              width: 3,
+            ),
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.red,width: 2),
+          errorStyle: const TextStyle(color: Colors.red),
+          errorMaxLines: 4,
+          errorBorder: UnderlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 2,
+            ),
           ),
-          hintText: widget.hint,
-          hintStyle: TextStyle(color: Colors.white),
-          fillColor: Colors.transparent.withOpacity(0.3),
-          filled: true,
         ),
       ),
     );

@@ -20,7 +20,14 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Card(
-      color: Colors.white,
+      shadowColor: Colors.white,
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: Colors.grey,
+            width: 2,
+          )
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(

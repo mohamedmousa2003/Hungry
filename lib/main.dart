@@ -21,7 +21,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white
       ),
       debugShowCheckedModeBanner: false,
-      home: Root(),
+      initialRoute: SplashScreen.routeName,
+      routes: {
+        SplashScreen.routeName:(context)=>SplashScreen(),
+        LoginView.routeName:(context)=>LoginView(),
+        SignUpView.routeName:(context)=>SignUpView(),
+        Root.routeName:(context)=>Root(),
+      },
     );
   }
 }

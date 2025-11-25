@@ -1,4 +1,4 @@
-# untitled
+# 🍔 Hungry App
 
 
 ## 📦 Packages Used
@@ -7,9 +7,9 @@
 
 ## 📱 Screenshots
 
-|                Splash                 |              Quran   Names              |                      Quran                      |
-|:-------------------------------------:|:---------------------------------------:|:------------------------------------------------:|
-| ![Splash](assets/image/screenshot/splash_screen.png) | ![Names](assets/image/screenshot/splash_screen.png) | ![Quran](assets/image/screenshot/splash_screen.png) |
+|                Splash                 |                    Register                    |                        Login                        |
+|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|
+| ![Splash](assets/image/screenshot/splash_screen.png) | ![Names](assets/image/screenshot/register.png) | ![Quran](assets/image/screenshot/login.png) |
 
 |                Sebha                  |                 hadith                  |                 hadith  Names                |
 |:-------------------------------------:|:---------------------------------------:|:---------------------------------------:|
