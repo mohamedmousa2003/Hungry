@@ -20,7 +20,7 @@ class CustomAuthBtn extends StatelessWidget {
         height: 45,
         decoration: BoxDecoration(
           color: color ??  Colors.transparent,
-          borderRadius: BorderRadius.circular(7),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: Colors.white60.withOpacity(0.5),
           ),
@@ -30,8 +30,8 @@ class CustomAuthBtn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(child: CustomText(
-              text: text.toUpperCase(),
-              size: 18,
+              text: text,
+              size: 20,
               weight: FontWeight.bold,
               color: textColor ??  AppColors.primary,
             )),

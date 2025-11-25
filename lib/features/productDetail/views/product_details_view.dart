@@ -31,7 +31,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                  child: Icon(CupertinoIcons.arrow_left)),
+                child: Icon(CupertinoIcons.arrow_left),
+              ),
               Gap(mediaQuery.height * 0.01),
               SpicySlider(
                 value: valueResult,
@@ -40,9 +41,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   setState(() {});
                 },
               ),
-              Gap(mediaQuery.height * 0.08),
+              Gap(mediaQuery.height * 0.02),
               CustomText(text: 'Toppings', size: 20, color: AppColors.primary),
-              Gap(mediaQuery.height * 0.08),
+              Gap(mediaQuery.height * 0.07),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
@@ -63,13 +64,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   }),
                 ),
               ),
-              Gap(mediaQuery.height * 0.05),
+              Gap(mediaQuery.height * 0.02),
               CustomText(
                 text: 'Side options',
                 size: 20,
                 color: AppColors.primary,
               ),
-              Gap(mediaQuery.height * 0.08),
+              Gap(mediaQuery.height * 0.07),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
@@ -90,33 +91,51 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   }),
                 ),
               ),
-              Gap(mediaQuery.height * 0.05),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Gap(mediaQuery.height * 0.18),
+
+            ],
+          ),
+        ),
+      ),
+      bottomSheet: Container(
+
+        width: double.infinity,
+        height: 100,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
+          child: Row(
+            children: [
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      CustomText(text: 'Burger Price',size: 22,weight: FontWeight.bold,color: AppColors.primary),
-                      CustomText(text: '\$ 18',size: 25,weight: FontWeight.bold,color: AppColors.primary,),
-                    ],
-                  ),
-                  Spacer(),
-                  CustomButton(
-                    widget:  Icon(
-                        CupertinoIcons.cart_badge_plus,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                    gap: 10,
-                    height: 48,
+                  CustomText(
+                    text: 'Burger Price',
+                    size: 22,
+                    weight: FontWeight.bold,
                     color: AppColors.primary,
-                    textColor: Colors.white,
-                    text: 'Add To Cart',
-                    onTap: () {},
+                  ),
+                  CustomText(
+                    text: '\$18',
+                    size: 25,
+                    weight: FontWeight.bold,
+                    color: AppColors.primary,
                   ),
                 ],
               ),
-              Gap(mediaQuery.height * 0.05),
+              Spacer(),
+              CustomButton(
+                widget: Icon(
+                  CupertinoIcons.cart_badge_plus,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                gap: 10,
+                height: 48,
+                color: AppColors.primary,
+                textColor: Colors.white,
+                text: 'Add To Cart',
+                onTap: () {},
+              ),
             ],
           ),
         ),

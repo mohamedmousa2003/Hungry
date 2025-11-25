@@ -8,7 +8,8 @@ import 'features/home/views/home_view.dart';
 import 'features/orderHistory/views/order_history_view.dart';
 
 class Root extends StatefulWidget {
-  Root({super.key});
+  static const String routeName="root";
+  const Root({super.key});
 
   @override
   State<Root> createState() => _RootState();
