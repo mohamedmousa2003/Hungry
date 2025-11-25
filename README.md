@@ -9,10 +9,10 @@
 
 ## 📱 Screenshots
 
-|                Splash                 |                    Register                    |                        Login                        |
-|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|
-| ![Splash](assets/image/screenshot/splash_screen.png) | ![Names](assets/image/screenshot/register.png) | ![Quran](assets/image/screenshot/login.png) |
+|                Splash                 |                    Register                    |                        Login                        |                        Login                        |
+|:-------------------------------------:|:----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
+| ![Splash](assets/image/screenshot/splash_screen.png) | ![Register](assets/image/screenshot/register.png) | ![Login](assets/image/screenshot/login.png) | ![Profile](assets/image/screenshot/profile.png) |
 
 |                       Profile                       |                 hadith                  |                 hadith  Names                |
 |:---------------------------------------------------:|:---------------------------------------:|:---------------------------------------:|
-| ![Sebha](assets/image/screenshot/profile.png) | ![Hadith](assets/image/screenshot/splash_screen.png) | ![Hadith](assets/image/screenshot/splash_screen.png) |
+| ![Profile](assets/image/screenshot/profile.png) | ![Hadith](assets/image/screenshot/splash_screen.png) | ![Hadith](assets/image/screenshot/splash_screen.png) |
