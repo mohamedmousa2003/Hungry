@@ -41,9 +41,10 @@ class _HomeViewState extends State<HomeView> {
                 child: GridView.builder(
                   padding: EdgeInsets.only(bottom: mediaQuery.height * 0.13),
                   itemCount: 6,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.75,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height * 0.75),
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                   ),

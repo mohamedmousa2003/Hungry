@@ -28,13 +28,19 @@ class UserHeader extends StatelessWidget {
           ],
         ),
         Spacer(),
-        CircleAvatar(radius: 30,
-          backgroundColor: AppColors.primary,
-          child: Icon(
-          CupertinoIcons.person,
-          size: 35,
-          color: Colors.white,
-        ),
+        Container(
+          height: 80,
+          width: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+            border: Border.all(width: 2, color: AppColors.primary),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Image.asset(
+            "assets/image/mohamed.jpg",
+            fit: BoxFit.cover,
+          ),
         ),
       ],
     );
