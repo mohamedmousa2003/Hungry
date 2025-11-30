@@ -2,21 +2,46 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:untitled/core/constants/app_colors.dart';
+import '../../../core/network/api_error.dart';
 import '../../../shared/custom_button.dart';
+import '../../../shared/custom_snack.dart';
 import '../../../shared/custom_text.dart';
+import '../../auth/data/auth_repo.dart';
+import '../../auth/data/user_model.dart';
 import '../widget/order_details_widget.dart';
 class OrderDetails extends StatefulWidget {
-  const OrderDetails({super.key});
-
+  const OrderDetails({super.key,required this.totalPrice});
+  final String totalPrice;
   @override
   State<OrderDetails> createState() => _OrderDetailsState();
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
   String selectedMethod = 'Cash';
+  final AuthRepo authRepo = AuthRepo();
+  UserModel? userModel;
+  Future<void> getProfileData() async {
+    try {
+      final user = await authRepo.getProfileData();
+      if (!mounted) return;
+      setState(() {
+        userModel = user;
+      });
+    } catch (e) {
+      String errorMsg = 'Error in Profile';
+      if (e is ApiError) errorMsg = e.message;
+      showErrorBanner(context, errorMsg);
+    }
+  }
+
+  @override
+  void initState() {
+    getProfileData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    double order = 18;
+    double order = double.parse(widget.totalPrice);
     double taxes = 30;
     double fees = 31;
     var mediaQuery = MediaQuery.of(context).size;
@@ -69,6 +94,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 onTap: () => setState(() => selectedMethod = "Cash"),
               ),
               Gap(mediaQuery.height * 0.02),
+              userModel?.visa == null ?SizedBox.shrink():
               ListTile(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -77,7 +103,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 16),
                 leading: Image.asset("assets/image/icon/visa.png", width: 50,color: Colors.white,),
                 title: CustomText(text: 'Debit card',color: Colors.white),
-                subtitle: CustomText(text: '**** ***** 2342',color: Colors.white),
+                subtitle: CustomText(text:  userModel?.visa?? '**** ***** 2342',color: Colors.white),
                 trailing: Radio<String>(
                   activeColor: Colors.white,
                   value: 'Visa',
