@@ -7,7 +7,9 @@ import '../../../core/constants/app_colors.dart';
 import '../../../shared/custom_text.dart';
 
 class UserHeader extends StatelessWidget {
-  const UserHeader({super.key});
+  const UserHeader({super.key,required this.name,required this.image});
+  final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class UserHeader extends StatelessWidget {
           children: [
             SvgPicture.asset("assets/image/svg/hungry.svg",color: AppColors.primary,height: 35,),
             Gap(mediaQuery.height*0.01,),
-            const CustomText(
-              text: 'Hello, Mohamed Mousa',
+            CustomText(
+              text: 'Hello, ${name}',
               color: Colors.grey,
               size: 15,
               weight: FontWeight.w500,
@@ -37,11 +39,21 @@ class UserHeader extends StatelessWidget {
             border: Border.all(width: 2, color: AppColors.primary),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Image.asset(
-            "assets/image/mohamed.jpg",
+          child: Image.network(
+            image, // <-- URL from API
             fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, color: Colors.red);
+            },
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
           ),
         ),
+
       ],
     );
   }

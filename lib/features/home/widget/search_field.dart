@@ -1,16 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/constants/app_colors.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({super.key});
+  final TextEditingController controller;
+  final Function(String) onSearchChanged;
+
+  const SearchField({
+    super.key,
+    required this.controller,
+    required this.onSearchChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
       child: TextField(
+        controller: controller,
+        onChanged: onSearchChanged,
         cursorHeight: 15,
         decoration: InputDecoration(
           filled: true,

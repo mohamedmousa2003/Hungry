@@ -122,3 +122,6 @@ class _RootState extends State<Root> with TickerProviderStateMixin {
     );
   }
 }
+
+////index: currentScreen,
+//           children: screens,
